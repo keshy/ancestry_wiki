@@ -1,4 +1,4 @@
-### Ancestory Wiki 
+### Ancestry Wiki 
 
 Explore a fun way to learn about history and ancestory of famous personalities using `RedisGraph`
 
