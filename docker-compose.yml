@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  redisgraph:
+    image: "redislabs/redisgraph"
+    ports:
+      - "6739:6739"
+  redisinsight:
+    image: "redislabs/redisinsight:latest"
+    volumes:
+      - ".:/db"
+    ports:
+      - "8001:8001"

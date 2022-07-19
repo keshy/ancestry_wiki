@@ -1,0 +1,4 @@
+beautifulsoup4
+redisgraph~=2.4.4
+redis~=3.5.3
+requests
