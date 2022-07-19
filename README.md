@@ -16,7 +16,7 @@ $> python main.py -u https://en.wikipedia.org/wiki/Zeus -l Greek
 
 - Traverse full lineage in all directions (Spouse, Parents, Children, Siblings, Relatives etc)
 - Query for important characters and timeline with additional metadata for each node provided. 
-- Learn more interactively about lesser known characters to popular characters. 
+- Learn more interactively about lesser known characters related to popular characters. 
 - Use custom labels to crawl different themes and find interconnections
 
 ![System Metrics](./images/mahabharat.png)
