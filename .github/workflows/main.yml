@@ -44,4 +44,4 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Integration Tests
-        run: python main.py -u https://en.wikipedia.org/wiki/Amitabh_Bachchan -l Bachchan 
+        run: python main.py -u https://en.wikipedia.org/wiki/Amitabh_Bachchan -l Bachchan -e 2
