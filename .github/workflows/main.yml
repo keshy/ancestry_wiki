@@ -49,9 +49,10 @@ jobs:
       - name: Snyk
         # You may pin to the exact commit or the version.
         # uses: snyk/actions@7fad562681122205233d1242c3bb39598c5393da
-        uses: snyk/actions@0.3.0
+        uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           json: snyk.json
-          command: snyk test --file=requirements.txt --command=python3
+          command: test --insecure
+          
