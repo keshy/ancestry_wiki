@@ -1,6 +1,8 @@
 ### Ancestry Wiki 
 
 ![Build Status](https://github.com/keshy/ancestry_wiki/actions/workflows/main.yml/badge.svg?event=push)
+![Known Vulnerabilities](https://snyk.io/test/github/keshy/ancestry_wiki/badge.svg)
+
 
 Explore a fun way to learn about history and ancestory of famous personalities using `RedisGraph`
 
