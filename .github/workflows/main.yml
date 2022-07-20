@@ -46,8 +46,11 @@ jobs:
       - name: Integration Tests
         run: python main.py -u https://en.wikipedia.org/wiki/Amitabh_Bachchan -l Bachchan -e 2
 
-      - name: Github vulnerability check
+      - name: Snyk
         # You may pin to the exact commit or the version.
-        # uses: tierconnect-adm/github-vulnerability-steps@c8188fcbbf825dfa23e780ec7d12a04c866b9af8
-        uses: tierconnect-adm/github-vulnerability-steps@v0.0.3
-
+        # uses: snyk/actions@7fad562681122205233d1242c3bb39598c5393da
+        uses: snyk/actions@0.3.0
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          json: snyk.json
