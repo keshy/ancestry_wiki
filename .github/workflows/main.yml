@@ -54,3 +54,4 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           json: snyk.json
+          command: snyk test --file=requirements.txt --command=python3
