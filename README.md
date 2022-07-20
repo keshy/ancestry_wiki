@@ -1,5 +1,7 @@
 ### Ancestry Wiki 
 
+![Build Status](https://github.com/keshy/ancestry_wiki/actions/workflows/main.yml/badge.svg)
+
 Explore a fun way to learn about history and ancestory of famous personalities using `RedisGraph`
 
 ### Set up
