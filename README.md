@@ -22,3 +22,11 @@ $> python main.py -u https://en.wikipedia.org/wiki/Zeus -l Greek
 - Use custom labels to crawl different themes and find interconnections
 
 ![System Metrics](./images/mahabharat.png)
+
+
+### Gotchas
+
+- Ensure you set up the `redisgraph` connection to `RedisInsight` by using the container internal IP. To extract this you can use the following command
+```commandline
+    $> docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ancestry_wiki-redisgraph-1
+```

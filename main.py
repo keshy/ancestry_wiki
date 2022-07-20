@@ -9,7 +9,8 @@ import argparse
 
 
 class Person:
-    def __init__(self, label="person", name="NoName", born=-1, died=-1, siblings='N/A', parents='N/A', children='N/A',
+    def __init__(self, label="person", name="NoName", born='-1', died='-1', siblings='N/A', parents='N/A',
+                 children='N/A',
                  spouse='N/A',
                  url=None):
         self.name = name if not None else "N/A"
@@ -31,6 +32,7 @@ class AncestorCrawl:
     DIED = "Died"
     SPOUSES = 'Spouses'
     SPOUSE = 'Spouse'
+    SPOUSE_S = 'Spouse(s)'
     CONSORT = 'Consort'
     CHILDREN = 'Children'
     PARENTS = 'Parents'
@@ -54,7 +56,7 @@ class AncestorCrawl:
             -1: "PARENT",
             0: "SIBLING",
             3: "RELATIVE",
-            4: "FAMILY"
+            4: "RELATIVE"
         }
 
     def crawl(self, label, url, direction=0, limit=100000, prev=None):
@@ -96,9 +98,14 @@ class AncestorCrawl:
                         b = i.findNext().text
                     elif self.DIED == i.text:
                         d = i.findNext().text
-                    elif self.SPOUSE == i.text or self.SPOUSES == i.text or self.CONSORT == i.text:
-                        sp = i.findNext().text
-                        for x in i.findNext().find_all('a'):
+                    elif self.SPOUSE == i.text or self.SPOUSES == i.text or self.CONSORT == i.text or self.SPOUSE_S == i.text:
+                        sp_X = i.findNext()
+                        sp = sp_X.text
+                        if not sp or sp in [self.SPOUSE_S, self.CONSORT, self.SPOUSE, self.SPOUSES]:
+                            sp_X = i.findNext().findNext()
+                            sp = sp_X.text
+
+                        for x in sp_X.find_all('a'):
                             if x.text.startswith('['):
                                 continue
                             sp_recurse[x.text] = x['href']
@@ -147,9 +154,9 @@ class AncestorCrawl:
                 for rl in p_recurse.keys():
                     self.crawl(label, self.WIKI_URL_PREFIX + p_recurse.get(rl), direction=-1, limit=limit, prev=p)
                 for rl in sp_recurse.keys():
-                    self.crawl(label, self.WIKI_URL_PREFIX + sp_recurse.get(rl), direction=0, limit=limit, prev=p)
+                    self.crawl(label, self.WIKI_URL_PREFIX + sp_recurse.get(rl), direction=1, limit=limit, prev=p)
                 for rl in sib_recurse.keys():
-                    self.crawl(label, self.WIKI_URL_PREFIX + sib_recurse.get(rl), direction=3, limit=limit, prev=p)
+                    self.crawl(label, self.WIKI_URL_PREFIX + sib_recurse.get(rl), direction=0, limit=limit, prev=p)
                 for rl in fm_recurse.keys():
                     self.crawl(label, self.WIKI_URL_PREFIX + fm_recurse.get(rl), direction=4, limit=limit, prev=p)
                 print("Done with generation for url: %s " % url)

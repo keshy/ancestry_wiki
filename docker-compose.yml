@@ -3,7 +3,7 @@ services:
   redisgraph:
     image: "redislabs/redisgraph"
     ports:
-      - "6739:6739"
+      - "6379:6379"
   redisinsight:
     image: "redislabs/redisinsight:latest"
     volumes:
