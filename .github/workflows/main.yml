@@ -24,24 +24,32 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      
+
       - name: Setup Python
         uses: actions/setup-python@v4.1.0
         with:
           # Version range or exact version of Python to use, using SemVer's version range syntax. Reads from .python-version if unset.
           python-version: 3.10.5
-      
+
       - name: Docker Compose Setup
         # You may pin to the exact commit or the version.
         # uses: ndeloof/install-compose-action@4a33bc31f327b8231c4f343f6fba704fedc0fa23
         uses: ndeloof/install-compose-action@v0.0.1
-      
+
 
       - name: Set up RedisGraph and RedisInsight
-        run: docker-compose up -d 
-      
-      - name: Install pre-requisites 
+        run: docker-compose up -d
+
+      - name: Install pre-requisites
         run: pip install -r requirements.txt
 
       - name: Integration Tests
         run: python main.py -u https://en.wikipedia.org/wiki/Amitabh_Bachchan -l Bachchan -e 2
+
+      - name: Snyk vuln analysis
+        # uses: snyk/actions@7fad562681122205233d1242c3bb39598c5393da
+        uses: snyk/actions@0.3.0
+        with:
+          # Output a snyk.json file with results if running the test command
+          json: snyk.json
+
