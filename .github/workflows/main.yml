@@ -39,8 +39,6 @@ jobs:
 
       - name: Set up RedisGraph and RedisInsight
         run: docker-compose up -d 
-        
-      # Runs a single command using the runners shell
-      - name: Integration Test 
-        run: python main.py -u https://en.wikipedia.org/wiki/Amitabh_Bachchan -l Bachhan 
-
+      
+      - name: Install pre-requisites 
+        run: pip install -r requirements.txtAW
